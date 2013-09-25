@@ -3,18 +3,9 @@
 #######################################################################################
 require 'sinatra/base'
 require 'data_mapper'
+require_relative 'helpers'
+require_relative 'data_mapper_setup'
 
-env = ENV["RACK_ENV"] || "development"
-
-
-#   Starting up Datamapper. All of the models should be under setup and before finalize
-#######################################################################################
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
-require './lib/link'
-require './lib/tag'
-require './lib/user'
-DataMapper.finalize
-DataMapper.auto_upgrade!
 
 
 
@@ -24,11 +15,9 @@ DataMapper.auto_upgrade!
 
 class BookmarkManager < Sinatra::Base
   set :views, File.join(File.dirname(__FILE__), '..', 'views')
-
-
-enable :sessions
-set :session_secret, "I'm the secret key to sign the cookie"
-
+  enable :sessions
+  set :session_secret, "I'm the secret key to sign the cookie"
+  helpers UsersHelper
 
 
 
@@ -60,17 +49,6 @@ set :session_secret, "I'm the secret key to sign the cookie"
                 :password => params[:password])
     session[:user_id] = user.id
     redirect to('/')
-  end
-
-
-
-
-  helpers do
-
-    def current_user    
-      @current_user ||= User.get(session[:user_id]) if session[:user_id]
-    end
-
   end
 
 end
