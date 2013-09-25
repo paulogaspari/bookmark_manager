@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
+
 gem 'sinatra' # Framework for this app
 gem 'sass' # extension for CSS3 adding nested rules, vars, mixins, etc..
 gem 'data_mapper'
