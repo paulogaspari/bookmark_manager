@@ -9,10 +9,10 @@
   <body>
     
     <div>
-    	<% if current_user %>
-    		Welcome, <%= current_user.email %>
-    	<% end %>
-      <%= yield %>
+		<% if current_user %>
+			Welcome, <%= current_user.email %>
+		<% end %>
+	    <%= yield %>
     </div>
 
   </body> 
