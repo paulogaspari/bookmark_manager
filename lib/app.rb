@@ -59,4 +59,33 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
+  get '/session/new' do
+    erb :new_session
+  end
+
+  post '/session' do
+    email, password = params[:email], params[:password]
+    user = User.authenticate(email, password)
+    if user
+      session[:user_id] = user.id
+      redirect to('/')
+    else
+      flash[:errors] = ["The email or password are incorrect"]
+      erb :new_session
+    end
+  end
+
+  def self.authenticate(email, password)
+    user = first(:email => email)
+
+    if user && BCrypt::Password.new(user.password_digest) == password
+      user
+    end
+  end
+
+
 end
+
+
+
+
