@@ -13,4 +13,3 @@ require_relative 'link'
 require_relative 'tag'
 require_relative 'user'
 DataMapper.finalize
-DataMapper.auto_upgrade!
