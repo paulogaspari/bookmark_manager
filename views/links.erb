@@ -1,0 +1,10 @@
+	    <div class="container">
+			<h4>Collection of links:</h4>
+			<div>
+				<ul>
+				  <% @links.each do |link| %>
+				    <li><a href="<%= link.url %>"><%= link.title %></a></li>
+				  <% end %>
+				</ul>
+			</div>
+		</div>

@@ -2,6 +2,7 @@
 #   Document setup
 #######################################################################################
 require 'sinatra/base'
+require 'sinatra/partial'
 require 'rack-flash'
 require 'data_mapper'
 require_relative 'helpers'
@@ -14,10 +15,13 @@ require_relative 'data_mapper_setup'
 #######################################################################################
 
 class BookmarkManager < Sinatra::Base
- 
+  register Sinatra::Partial
+  set :partial_template_engine, :erb
   set :views, File.join(File.dirname(__FILE__), '..', 'views')
   enable :sessions
   set :session_secret, "I'm the secret key to sign the cookie"
+
+  set :public_folder, File.join(File.dirname(__FILE__), '..', 'public')
   use Rack::Flash, :sweep => true
   use Rack::MethodOverride
   helpers UsersHelper
@@ -26,6 +30,10 @@ class BookmarkManager < Sinatra::Base
   get '/' do
   	@links = Link.all
   	erb :index
+  end
+
+  get '/about' do
+    erb :about
   end
 
 
