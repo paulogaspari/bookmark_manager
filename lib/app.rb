@@ -14,18 +14,24 @@ require_relative 'data_mapper_setup'
 #######################################################################################
 
 class BookmarkManager < Sinatra::Base
+ 
   set :views, File.join(File.dirname(__FILE__), '..', 'views')
   enable :sessions
   set :session_secret, "I'm the secret key to sign the cookie"
-  use Rack::Flash
+  use Rack::Flash, :sweep => true
+  use Rack::MethodOverride
   helpers UsersHelper
-
 
 
   get '/' do
   	@links = Link.all
   	erb :index
   end
+
+
+
+#   ADDING LINKS
+###################################################################
 
   post '/links' do
   	url = params['url']
@@ -35,16 +41,27 @@ class BookmarkManager < Sinatra::Base
   	redirect to('/')
   end
 
+
+
+#   SORTING BY TAGS
+###################################################################
+ 
   get '/tags/:text' do
   	tag = Tag.first(:text => params[:text])
   	@links = tag ? tag.links : []
   	erb :index
   end
 
+
+
+#   USERS
+###################################################################
+
   get '/users/new' do
     @user = User.new
     erb :new_user
   end
+
 
   post '/users' do
     @user = User.create(:email => params[:email],
@@ -59,9 +76,15 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
+
+
+#   SESSION
+###################################################################
+
   get '/session/new' do
     erb :new_session
   end
+
 
   post '/session' do
     email, password = params[:email], params[:password]
@@ -75,12 +98,11 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
-  def self.authenticate(email, password)
-    user = first(:email => email)
 
-    if user && BCrypt::Password.new(user.password_digest) == password
-      user
-    end
+  delete '/session' do
+    flash[:notice] = "Good bye!"
+    session[:user_id] = nil
+    redirect to('/')
   end
 
 

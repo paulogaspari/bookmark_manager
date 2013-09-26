@@ -7,12 +7,34 @@
 
 
   <body>
-    
-    <div>
-		<% if current_user %>
-			Welcome, <%= current_user.email %>
-		<% end %>
-    </div>
+
+
+
+<!-- PUTTING SIGN OUT -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+ 	 <% if current_user %>
+		Welcome, <%= current_user.email %>
+		<form method='post' action='/session'>
+			<input type='hidden' name='_method' value='delete'>
+			<input type='submit' value='Sign out'>
+		</form>
+	<% end %>
+
+
+
+<!-- PUTTING NOTICE  OF SIGN OUT -->	
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+	<div>
+	  	<% if flash[:notice] %>
+	    	<div id="notice">
+	      		<%= flash[:notice] %>
+	    	</div>
+	 	<% end %>
+	</div>
+
+<!-- PUTTING ERRORS -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 
     <div>
    		<% if flash[:errors] && !flash[:errors].empty? %>
@@ -24,6 +46,11 @@
 	 	 	</ul>
  	 	<% end %>
 	</div>
+
+
+
+<!-- PUTTING THE REST OF THE CONTENT -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 
 	<div>
 	    <%= yield %>
