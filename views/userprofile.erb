@@ -1,0 +1,17 @@
+<div class="jumbotron">
+</div>
+
+<div class="container">
+	<h4>Profile of <%= current_user.username %>:</h4>
+	<div>
+		<ul>
+	
+	<!-- daqui para baixo nao funciona porque o current user nao tem nada -->
+
+			<li>First Name: <%= current_user.firstname %></li>
+			<li>Last Name: <%= current_user.lastname %></li>
+			<li>Username: <%= current_user.username %></li>
+			<li>Email: <%= current_user.email %></li>					
+		</ul>
+	</div>
+</div>

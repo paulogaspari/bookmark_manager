@@ -36,6 +36,9 @@ class BookmarkManager < Sinatra::Base
     erb :about
   end
 
+  get '/userprofile' do
+    erb :userprofile
+  end
 
 
 #   ADDING LINKS
@@ -74,7 +77,10 @@ class BookmarkManager < Sinatra::Base
   post '/users' do
     @user = User.create(:email => params[:email],
                 :password => params[:password],
-                :password_confirmation => params[:password_confirmation])
+                :password_confirmation => params[:password_confirmation],
+                :firstname => params[:firstname],
+                :lastname => params[:lastname],
+                :username => params[:username])
     if @user.save
       session[:user_id] = @user.id
       redirect to('/')
@@ -102,7 +108,7 @@ class BookmarkManager < Sinatra::Base
       redirect to('/')
     else
       flash[:errors] = ["The email or password are incorrect"]
-      erb :new_session
+      redirect to('/')
     end
   end
 

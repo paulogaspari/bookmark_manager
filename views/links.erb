@@ -1,10 +1,18 @@
-	    <div class="container">
-			<h4>Collection of links:</h4>
-			<div>
-				<ul>
-				  <% @links.each do |link| %>
-				    <li><a href="<%= link.url %>"><%= link.title %></a></li>
-				  <% end %>
-				</ul>
+
+<div class="container">
+	<h4>Collection of Links:</h4>
+	<div>
+		<ul>
+			<% @links.each do |link| %>
+			<div class="list-group">
+				  <h4 class="list-group-item-heading"><%= link.title %></h4>
+				  <p><a href="<%= link.url %>"><%= link.url %></a></p>
+				  <p>Tags: <%= link.tags.map(&:text).join(', ') %></P>
+				  <p class='source'>
+				  	added <%= link.created_at %> by <a href="#"><%= link.user.username %></a>
+				  </p>
 			</div>
-		</div>
+			<% end %>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+	<% if current_user %>
+
+
+
+	    <hr>
+		<h5>Add a new Post:</h5>
+		<small>
+			<form action='/posts' method='post'>
+					<div class="input-group input-group-sm">
+						
+						<span class="input-group-addon">Title:</span>
+						<input type='text' name='title'>
+						
+						<span class="input-group-addon">Post:</span>
+						<input type='text' name='body'>
+						
+						<span class="input-group-addon">Hashtags:</span>
+						<input type='text' name='tags'>
+
+						<input type='hidden' name='username' value='<%= current_user.username %>'>
+						
+						<input type='submit' value='Add post' class="btn btn-default btn-xs">
+					</div>
+			</form>
+		</small>
+	    <hr>
+	<% end %>
+</div>

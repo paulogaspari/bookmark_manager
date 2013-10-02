@@ -65,38 +65,13 @@
 
 
 
+
 <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 <!--                        CONTAINER                             -->
 <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 	
 	    
 		<%= yield %>
-
-
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
-<!--                         NOTICES                              -->
-<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
-	<!-- PUTTING NOTICE  OF SIGN OUT -->	
-		<div>
-		  	<% if flash[:notice] %>
-		    	<div id="notice">
-		      		<%= flash[:notice] %>
-		    	</div>
-		 	<% end %>
-		</div>
-
-	<!-- PUTTING ERRORS -->
-	    <div>
-	   		<% if flash[:errors] && !flash[:errors].empty? %>
-		   		Sorry, there were the following problems with the form. 
-		   		<ul id='errors'>
-		 	 		<% flash[:errors].each do |error| %>
-		 	 		<li><%= error %></li>
-		 	 		<% end %>
-		 	 	</ul>
-	 	 	<% end %>
-		</div>
-
 
 
 <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->

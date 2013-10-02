@@ -8,32 +8,25 @@
   <div class="container">
     <h1>Linkily.io</h1>
     <p><small>This is a website to create collections of your most precious links. Please register, or login to add links and acess your list. This software is designed specifically for the advertising agency Funnyhow and is restricted to other users.</small></p>
-    <% if current_user %>
-	    <hr>
-		<h5>Add a new link:</h5>
-		<small>
-			<form action='/links' method='post'>
-			<!-- 	<small><small><small> -->
-					<div class="input-group input-group-sm">
-						<span class="input-group-addon">Title:</span>
-						<input type='text' name='title'>
-						
-						<span class="input-group-addon">Url:</span>
-						<input type='text' name='url'>
-						
-						<span class="input-group-addon">Tags:</span>
-						<input type='text' name='tags'>
-						
-						<input type='submit' value='Add link' class="btn btn-default btn-xs">
-					</div>
-				<!-- </small></small></small> -->
-			</form>
-		</small>
-	<% end %>
   </div>
 </div>
 
 
+
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!--                         NOTICES                              -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+
+<%= partial :notices %>
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!--                         PUT POSTS                            -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+
+<%= partial :posting %>
 
 
 <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->

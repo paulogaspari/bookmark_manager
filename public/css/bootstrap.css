@@ -4362,7 +4362,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-text {
   float: left;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 @media (min-width: 768px) {
@@ -4941,7 +4941,7 @@ a.list-group-item.active > .badge,
 @media screen and (min-width: 768px) {
   .jumbotron {
     padding-top: 48px;
-    padding-bottom: 48px;
+    padding-bottom: 8px;
   }
   .container .jumbotron {
     padding-right: 60px;

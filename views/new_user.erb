@@ -1,13 +1,30 @@
+<div class="jumbotron">
+</div>
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!--                         NOTICES                              -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+
+<%= partial :notices %>
+
+
 
 <div class="container">
-
-	<h1>Please sign up</h1>
-
-	<form action='/users' method='post'>
-		Email: <input name='email' type='text' value='<%= @user.email %>'>
-		Password: <input name='password' type='password'>
-		Confirm Password: <input name='password_confirmation' type='password'>
-		<input type='submit' value='Sign up' class='btn'>
-	</form>
-
+	<div class="row">
+	 	<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<h1>Please sign up</h1>
+			<form action='/users' method='post'>
+				<p>First name: <input name='firstname' type='text' value='<%= @user.email %>'></p>
+				<p>Last name: <input name='lastname' type='text' value='<%= @user.email %>'></p>
+				<p>Email: <input name='email' type='text' value='<%= @user.email %>'></p>
+				<p>Username: <input name='username' type='text' value='<%= @user.email %>'></p>
+				<p>Password: <input name='password' type='password'></p>
+				<p>Confirm Password: <input name='password_confirmation' type='password'></p>
+				<p><input type='submit' value='Sign up' class='btn'></p>
+			</form>
+	  	</div>
+	  	<div class="col-md-4"></div>
+	</div>
 </div>
