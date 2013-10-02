@@ -7,6 +7,7 @@ require 'rack-flash'
 require 'data_mapper'
 require_relative 'helpers'
 require_relative 'data_mapper_setup'
+require_relative 'emailer'
 
 
 
@@ -29,6 +30,7 @@ class BookmarkManager < Sinatra::Base
 
   get '/' do
   	@links = Link.all
+    @tags = Tag.all
   	erb :index
   end
 
@@ -48,7 +50,9 @@ class BookmarkManager < Sinatra::Base
   	url = params['url']
   	title = params['title']
   	tags = params['tags'].split(' ').map {|tag| Tag.first_or_create(:text => tag) }
-  	Link.create(:url => url, :title => title, :tags => tags)
+    user = User.first_or_create(:username => params['username'])
+    time = Time.now
+  	Link.create(:url => url, :title => title, :tags => tags, :user => user, :created_at => time)
   	redirect to('/')
   end
 
@@ -73,6 +77,10 @@ class BookmarkManager < Sinatra::Base
     erb :new_user
   end
 
+  get '/email' do
+    Emailer.new.send_welcome_message(current_user)
+    redirect to('/')
+  end
 
   post '/users' do
     @user = User.create(:email => params[:email],
@@ -95,9 +103,6 @@ class BookmarkManager < Sinatra::Base
 #   SESSION
 ###################################################################
 
-  get '/session/new' do
-    erb :new_session
-  end
 
 
   post '/session' do
@@ -111,6 +116,7 @@ class BookmarkManager < Sinatra::Base
       redirect to('/')
     end
   end
+
 
 
   delete '/session' do

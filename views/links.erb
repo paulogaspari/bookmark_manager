@@ -1,13 +1,25 @@
 
 <div class="container">
+	<h4>List of Tags:</h4>
+		<% @tags.each do |tag| %>
+			<span class="label label-default"> <%= tag.text %> </span>
+		<% end %>
+</div>
+
+<div class="container">
 	<h4>Collection of Links:</h4>
 	<div>
 		<ul>
 			<% @links.each do |link| %>
-			<div class="list-group">
+			<div class="list-group well">
 				  <h4 class="list-group-item-heading"><%= link.title %></h4>
 				  <p><a href="<%= link.url %>"><%= link.url %></a></p>
-				  <p>Tags: <%= link.tags.map(&:text).join(', ') %></P>
+				  <p>Tags:
+
+				  	<% link.tags.each do |tag| %>
+						<span class="label label-default"> <%= tag.text %> </span>
+					<% end %>
+					</P>
 				  <p class='source'>
 				  	added <%= link.created_at %> by <a href="#"><%= link.user.username %></a>
 				  </p>
